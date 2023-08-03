@@ -1,34 +1,32 @@
-const inquirer = require('inquirer');
-const qr = require('qr-image');
-const fs = require('fs');
-
-inquirer
-  .prompt([
-    {
-      message: "Enter a URL: ",
-      name: "URL",
-    }
-  ])
-  .then((answers) => {
-    const url = answers.URL;
-    var qr_svg = qr.image(url);
-    qr_svg.pipe(fs.createWriteStream('qr_img.png'));
-
-    fs.writeFile("URL.txt", url, (err) => {
-      if (err) throw err;
-      console.log('The file has been saved!');
-    });
-  })
-  .catch((error) => {
-    if (error.isTtyError) {
-      // Prompt couldn't be rendered in the current environment
-    } else {
-      // Something else went wrong
-    }
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("qrForm");
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const inputURL = document.getElementById("text").value;
+    generateQRCode(inputURL);
   });
+});
 
-/* 
-1. Use the inquirer npm package to get user input.
-2. Use the qr-image npm package to turn the user entered URL into a QR code image.
-3. Create a txt file to save the user input using the native fs node module.
-*/
+function generateQRCode(url) {
+  const qr = qrcode(0, "M");
+  qr.addData(url);
+  qr.make();
+  
+  const qrCodeImage = document.createElement("img");
+  qrCodeImage.src = qr.createDataURL(10, 0);
+  const qrCodeImageContainer = document.getElementById("qrCodeImage");
+  qrCodeImageContainer.innerHTML = '';
+  qrCodeImageContainer.appendChild(qrCodeImage);
+
+  // Save the URL to a text file
+  saveURLToTxtFile(url);
+}
+
+function saveURLToTxtFile(url) {
+  const txtBlob = new Blob([url], { type: "text/plain" });
+  const txtURL = URL.createObjectURL(txtBlob);
+  const txtLink = document.createElement("a");
+  txtLink.href = txtURL;
+  txtLink.download = "URL.txt";
+  txtLink.click();
+}
