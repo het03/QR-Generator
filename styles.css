@@ -1,28 +1,47 @@
-.head{
-    padding-left: 25px;
-    font-size: 48px;
+@import url('https://fonts.googleapis.com/css2?family=Cairo+Play:wght@800&display=swap');
+
+*{
+    padding: 0%;
+    margin: 0%; 
 }
-.container{
-    padding-left: 25px;
-    padding-top: 25px;
+
+.main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex-direction: column;
+    gap: 40px;
+    font-family: 'Cairo Play', sans-serif;
+}
+
+.head{
+    font-size: 80px;
 }
 
 input[type="text"] {
-    padding: 10px;
+    height: 50px;
     font-size: 16px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    width: 300px;
+    border-radius: 10px;
+    width: 400px;
 }
 
-.button {
-    padding: 10px 20px;
-    font-size: 16px;
+#qrForm{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.button {    
+    width: 400px;
+    height: 50px;
+    font-size: 20px;
     background-color: #333;
     color: #fff;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
+    font-family: 'Cairo Play', sans-serif;
 }
 
 .button:hover {
