@@ -11,7 +11,7 @@
     justify-content: center;
     height: 100vh;
     flex-direction: column;
-    gap: 40px;
+    gap: 70px;
     font-family: 'Cairo Play', sans-serif;
 }
 
@@ -25,12 +25,15 @@ input[type="text"] {
     border: 1px solid #ccc;
     border-radius: 10px;
     width: 400px;
+    box-shadow: 2px 2px #222 inset;   
 }
 
-#qrForm{
+.container, #qrForm{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
 }
 
 .button {    
@@ -50,4 +53,10 @@ input[type="text"] {
 
 .button:active {
     background-color: #222;
+}
+
+#qrCodeImage{
+    height: 250px;
+    width: 250px;
+    border: 1px solid #ccc;
 }
